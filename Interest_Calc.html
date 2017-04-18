@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="Interest_Calc.js"></script>
+	<link rel="stylesheet"  type="text/css" href="Interest_Calc.css" />
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">		
+	<link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+	<body>
+		<h1> Interest Calculator </h1>
+		<div class="mycontainer">
+			<div class="col-12 col-sm-8">
+				<form ng-app="myApp">
+					<div class="form-type" ng-controller="interestCalculator">
+						<label for="interestType">Type of Interest:</label>
+						<select ng-model="selectedType" ng-options="x for x in interesttype" ></select>
+						<br/>
+						<div class="form-type" ng-show="selectedType">
+							<label for="principal" >Principal Loan Amount:</label>
+								<input type="text" class="form-control" id="principal" ng-model="principal" /><br/>
+							<label for="rate">Annual Percentage Rate:</label>
+								<input type="text" class="form-control" id="rate" ng-model="rate" /><br/>
+							<label for="time">Length of Loan in Years:</label>
+								<input type="text" class="form-control" id="time" ng-model="time" /><br/>
+							<label for="compoundFrequency" ng-if="selectedType == 'Compound Interest'">Compound Frequency:</label>
+								<select ng-model="$parent.selectedFrequency" ng-options="y for y in frequencytype" ng-if="selectedType == 'Compound Interest'"></select>
+								<br/><br/>
+							<button ng-click="total()">Calculate</button>
+							<p id="result"></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
